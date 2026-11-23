@@ -266,6 +266,7 @@ function page({ path, section, title, description, ogImage = DEFAULT_OG, extra =
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${abs(ogImage)}">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="${SITE_ICON}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${APPLE_ICON}">
 <link rel="stylesheet" href="/assets/css/styles.css">
