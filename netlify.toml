@@ -1,0 +1,6 @@
+# The site is a plain static HTML/CSS/JS site (no framework, no dependencies).
+# Its files are committed as a single zip archive, so the build unpacks the
+# archive and Netlify publishes the extracted folder as-is.
+[build]
+  command = "unzip -oq pantheon-properties-website4.zip"
+  publish = "pantheon-site"
