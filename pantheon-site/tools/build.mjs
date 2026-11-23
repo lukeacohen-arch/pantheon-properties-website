@@ -43,7 +43,7 @@ const properties = [
   {
     slug: "401-penhorn-avenue", name: "401 Penhorn Avenue", city: "Secaucus", state: "nj",
     img: UP + "2020/11/prop44bd683f506fd-2-scaled.jpg", hero: UP + "2020/11/prop44bd683f506fd-2-1170x694.jpg",
-    sf: "73,921 SF", sfNum: 73921, land: "3.69 acres", acres: 3.69, ceiling: "20 ft", parking: "81 spaces", loading: null,
+    sf: "73,921 SF", sfNum: 73921, land: "3.69 acres", acres: 3.69, ceiling: "22 ft", parking: "81 spaces", loading: null,
     status: "available",
     desc: "Prime industrial building located off the New Jersey Turnpike and Route 3. The building is within minutes of Manhattan and Newark International Airport. The Garden State Parkway, Routes 17, 46, 1 & 9, and arteries to I-80, I-95 and I-280 are easily accessible.",
     units: [U("1", 16141), U("2", 12106), U("3", 12106), U("4", 11012), U("5", 10406),
