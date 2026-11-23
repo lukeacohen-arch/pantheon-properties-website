@@ -43,7 +43,7 @@ const properties = [
   {
     slug: "401-penhorn-avenue", name: "401 Penhorn Avenue", city: "Secaucus", state: "nj",
     img: UP + "2020/11/prop44bd683f506fd-2-scaled.jpg", hero: UP + "2020/11/prop44bd683f506fd-2-1170x694.jpg",
-    sf: "73,921 SF", sfNum: 73921, land: "3.69 acres", acres: 3.69, ceiling: "20 ft", parking: "81 spaces", loading: null,
+    sf: "73,921 SF", sfNum: 73921, land: "3.69 acres", acres: 3.69, ceiling: "22 ft", parking: "81 spaces", loading: null,
     status: "available",
     desc: "Prime industrial building located off the New Jersey Turnpike and Route 3. The building is within minutes of Manhattan and Newark International Airport. The Garden State Parkway, Routes 17, 46, 1 & 9, and arteries to I-80, I-95 and I-280 are easily accessible.",
     units: [U("1", 16141), U("2", 12106), U("3", 12106), U("4", 11012), U("5", 10406),
@@ -712,7 +712,9 @@ add("/contact/", page({
   <div class="container contact-grid">
     <div>
       <h2>Send us a message</h2>
-      <form class="form" data-contact-form method="post" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+      <form class="form" name="contact" data-contact-form method="post" action="/contact/thank-you/" data-netlify="true" netlify-honeypot="company_website" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="subject" value="New website inquiry (%{submissionId})">
         <div class="form-row form-row--2">
           <div class="field"><label for="name">Name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="email">Email <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -743,12 +745,25 @@ add("/contact/", page({
       <h3>Contacts</h3>
       <ul class="people">
         <li><strong>Ken Cohen</strong><span>President &amp; CEO · <a href="tel:+12122777500">212.277.7500</a></span></li>
-        <li><strong>Lucas Cohen</strong><span>Executive Vice President · <a href="tel:+12122777503">212.277.7503</a></span></li>
+        <li><strong>Lucas Cohen</strong><span>Executive Vice President · <a href="tel:+12122777505">212.277.7505</a></span></li>
         <li><strong>Marissa Walach</strong><span>Property Manager · <a href="tel:+12122777518">212.277.7518</a></span></li>
       </ul>
     </div>
   </div>
 </section>`,
+}));
+
+/* ------------------------------------------------------------- thank you -- */
+// Shown after the contact form is sent without JavaScript (the form's action). Not indexed.
+add("/contact/thank-you/", page({
+  path: "/contact/thank-you/", section: "contact", noindex: true,
+  title: "Message sent | Pantheon Properties",
+  description: "Thank you for contacting Pantheon Properties. Our team will respond shortly.",
+  body: `<section class="section notfound"><div class="container">
+  <p class="eyebrow">Message sent</p><h1>Thank you</h1>
+  <p class="lead" style="margin-inline:auto">Your message has been sent and our team will respond shortly. For anything urgent, call <a href="tel:${CO.phoneTel}">${CO.phone}</a>.</p>
+  <div class="btn-row" style="justify-content:center"><a class="btn btn--dark" href="/properties/">View properties</a><a class="btn btn--outline" href="/">Back to home</a></div>
+</div></section>`,
 }));
 
 /* ------------------------------------------------------------------- 404 -- */
@@ -773,7 +788,7 @@ for (const { path, html } of pages) {
   writeFile(path.endsWith(".html") ? path.slice(1) : join(path.slice(1), "index.html"), html);
 }
 
-const indexable = pages.filter((p) => p.path !== "/404.html");
+const indexable = pages.filter((p) => p.path !== "/404.html" && p.path !== "/contact/thank-you/");
 const prio = (p) => (p === "/" ? "1.0" : p.startsWith("/property/") ? "0.7" : "0.8");
 writeFile("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

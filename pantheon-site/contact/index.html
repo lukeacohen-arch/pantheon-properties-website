@@ -53,7 +53,9 @@
   <div class="container contact-grid">
     <div>
       <h2>Send us a message</h2>
-      <form class="form" data-contact-form method="post" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+      <form class="form" name="contact" data-contact-form method="post" action="/contact/thank-you/" data-netlify="true" netlify-honeypot="company_website" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="subject" value="New website inquiry (%{submissionId})">
         <div class="form-row form-row--2">
           <div class="field"><label for="name">Name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="email">Email <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -84,7 +86,7 @@
       <h3>Contacts</h3>
       <ul class="people">
         <li><strong>Ken Cohen</strong><span>President &amp; CEO · <a href="tel:+12122777500">212.277.7500</a></span></li>
-        <li><strong>Lucas Cohen</strong><span>Executive Vice President · <a href="tel:+12122777503">212.277.7503</a></span></li>
+        <li><strong>Lucas Cohen</strong><span>Executive Vice President · <a href="tel:+12122777505">212.277.7505</a></span></li>
         <li><strong>Marissa Walach</strong><span>Property Manager · <a href="tel:+12122777518">212.277.7518</a></span></li>
       </ul>
     </div>
