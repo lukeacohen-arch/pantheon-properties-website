@@ -81,37 +81,17 @@
         return;
       }
 
-      const action = form.getAttribute("action") || "";
       const data = new FormData(form);
       const submitBtn = form.querySelector("[type=submit]");
 
-      // Until a form endpoint is configured, fall back to the visitor's email app.
-      if (!action || action.includes("YOUR_FORM_ID")) {
-        const label = (name) => {
-          const el = form.elements[name];
-          return el && el.selectedOptions && el.selectedOptions[0] ? el.selectedOptions[0].text : "";
-        };
-        const lines = [
-          `Name: ${data.get("name")}`,
-          `Company: ${data.get("company") || "-"}`,
-          `Email: ${data.get("email")}`,
-          `Phone: ${data.get("phone") || "-"}`,
-          `Inquiry: ${label("type")}`,
-          `Property: ${data.get("property") ? label("property") : "-"}`,
-          `Space needed: ${data.get("size") || "-"}`,
-          "",
-          `${data.get("message")}`,
-        ];
-        const subject = encodeURIComponent(`Website inquiry — ${label("type")}`);
-        const body = encodeURIComponent(lines.join("\n"));
-        window.location.href = `mailto:leasing@pantheonproperties.com?subject=${subject}&body=${body}`;
-        show("Your email app should open with your message ready to send. You can also call 212.277.7500.", "ok");
-        return;
-      }
-
       submitBtn.disabled = true;
       try {
-        const res = await fetch(action, { method: "POST", body: data, headers: { Accept: "application/json" } });
+        // Netlify Forms: POST URL-encoded fields (including the hidden form-name) to the site.
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data).toString(),
+        });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
         show("Thank you. Your message has been sent and our team will respond shortly.", "ok");

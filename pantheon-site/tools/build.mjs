@@ -712,7 +712,9 @@ add("/contact/", page({
   <div class="container contact-grid">
     <div>
       <h2>Send us a message</h2>
-      <form class="form" data-contact-form method="post" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+      <form class="form" name="contact" data-contact-form method="post" action="/contact/thank-you/" data-netlify="true" netlify-honeypot="company_website" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="subject" value="New website inquiry (%{submissionId})">
         <div class="form-row form-row--2">
           <div class="field"><label for="name">Name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="email">Email <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -751,6 +753,19 @@ add("/contact/", page({
 </section>`,
 }));
 
+/* ------------------------------------------------------------- thank you -- */
+// Shown after the contact form is sent without JavaScript (the form's action). Not indexed.
+add("/contact/thank-you/", page({
+  path: "/contact/thank-you/", section: "contact", noindex: true,
+  title: "Message sent | Pantheon Properties",
+  description: "Thank you for contacting Pantheon Properties. Our team will respond shortly.",
+  body: `<section class="section notfound"><div class="container">
+  <p class="eyebrow">Message sent</p><h1>Thank you</h1>
+  <p class="lead" style="margin-inline:auto">Your message has been sent and our team will respond shortly. For anything urgent, call <a href="tel:${CO.phoneTel}">${CO.phone}</a>.</p>
+  <div class="btn-row" style="justify-content:center"><a class="btn btn--dark" href="/properties/">View properties</a><a class="btn btn--outline" href="/">Back to home</a></div>
+</div></section>`,
+}));
+
 /* ------------------------------------------------------------------- 404 -- */
 add("/404.html", page({
   path: "/404.html", section: "", noindex: true,
@@ -773,7 +788,7 @@ for (const { path, html } of pages) {
   writeFile(path.endsWith(".html") ? path.slice(1) : join(path.slice(1), "index.html"), html);
 }
 
-const indexable = pages.filter((p) => p.path !== "/404.html");
+const indexable = pages.filter((p) => p.path !== "/404.html" && p.path !== "/contact/thank-you/");
 const prio = (p) => (p === "/" ? "1.0" : p.startsWith("/property/") ? "0.7" : "0.8");
 writeFile("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
