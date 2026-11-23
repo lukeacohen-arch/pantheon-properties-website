@@ -15,6 +15,7 @@ contact/index.html
 assets/css/styles.css           Design system (tokens at the top) + components
 assets/js/main.js               Mobile nav, property filters, contact form (all optional enhancements)
 assets/img/                     favicon.svg, logo.svg
+assets/media/                   Property/team photos and PDF flyers
 sitemap.xml  robots.txt  llms.txt
 tools/build.mjs                 Optional generator (node tools/build.mjs) that rewrites every page from one data block
 ```
@@ -24,7 +25,7 @@ Preview locally with a server (paths are root-relative): `python3 -m http.server
 ## Before launch (items that need your input)
 
 1. **Contact form endpoint.** The form action is a placeholder (`https://formspree.io/f/YOUR_FORM_ID`). Until it is replaced, the form opens the visitor's email app addressed to leasing@pantheonproperties.com. Swap in Formspree, Netlify Forms, or your own handler.
-2. **Logo and images.** The logo is now your original design redrawn as a vector (`assets/img/logo.svg`, `logo-white.svg`, favicon and apple-touch icon are all self-hosted). Only the property/team photos and the marketing flyers are still loaded from the live WordPress uploads folder. Self-host those before WordPress goes away.
+2. **Logo and images.** Everything is self-hosted. The logo is your original design redrawn as a vector (`assets/img/`), and all property/team photos and marketing flyers were copied from the old WordPress uploads folder into `assets/media/`, so nothing depends on WordPress anymore.
 3. **Confirm availability.** 280 Wilson Avenue says "Fully Leased" on the live site, but its unit table lists Unit C (26,545 SF) as available. This build shows it as leased. Update the `units`/`status` data if that's wrong.
 4. **Tenant names** were derived from the logo file names on the live site. Confirm spellings and that you want them listed.
 5. **Property descriptions** for properties other than 401 and 201 Penhorn were written from the live spec data only. Review them.
@@ -49,6 +50,12 @@ Old property URLs are preserved (`/property/<slug>/`), so no redirects are neede
 ```
 
 On Apache: `Redirect gone /hack-au-pokies-2024/` (one line per URL).
+
+## How to add or replace photos and flyers
+
+1. On GitHub, open `pantheon-site/assets/media/` and choose **Add file → Upload files**. Drag in the photo (JPG/WebP) or flyer (PDF) and commit. Netlify redeploys automatically.
+2. Point the page at it with a root-relative path, e.g. `<img src="/assets/media/2026/01/new-photo.jpg">` or `<a href="/assets/media/2026/01/flyer.pdf">`. If you use the generator, set the property's `img`/`hero` or unit flyer to `UP + "2026/01/new-photo.jpg"` and re-run it.
+3. Keep file names lowercase with hyphens and no spaces. Resize photos to about 2000 px wide (under ~500 KB) before uploading.
 
 ## How to add or update a property
 
