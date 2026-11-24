@@ -29,27 +29,17 @@ Preview locally with a server (paths are root-relative): `python3 -m http.server
 3. **Confirm availability.** 280 Wilson Avenue says "Fully Leased" on the live site, but its unit table lists Unit C (26,545 SF) as available. This build shows it as leased. Update the `units`/`status` data if that's wrong.
 4. **Tenant names** were derived from the logo file names on the live site. Confirm spellings and that you want them listed.
 5. **Property descriptions** for properties other than 401 and 201 Penhorn were written from the live spec data only. Review them.
-6. **Hacked content.** The live site contains injected "pokies"/casino spam links. Do not migrate the WordPress database. After cutover, make those URLs return **410 Gone** (see below) and request removal in Google Search Console.
+6. **Hacked content.** The live site contains injected "pokies"/casino spam links. Do not migrate the WordPress database. They already return **410 Gone** on the new site (see below). After cutover, request their removal in Google Search Console.
 
 ## Redirects and spam URLs
 
-Old property URLs are preserved (`/property/<slug>/`), so no redirects are needed for them. Add 410s for the spam pages, e.g. on Netlify (`_redirects`):
+Redirects from the old WordPress site live in `_redirects` (in this folder). Netlify applies them automatically on every deploy, and the generator never overwrites the file.
 
-```
-/australian-pokies-at-casino-2024/  /  410
-/hack-au-pokies-2024/               /  410
-/win-cash-safe-pokies/              /  410
-/free-winning-pokies-machines/      /  410
-/tax-free-pokies-with-bonus-that-pay-cash/  /  410
-/popular-pokies-tricks-to-win/      /  410
-/batman-hill-pokies/                /  410
-/real-money-pokies-2024/            /  410
-/aus-money-accepted-aristocrat-pokies/  /  410
-/slot-machines-in-anaheim-au/       /  410
-/news/                              /  301
-```
+- **Spam pages** (the injected "pokies"/casino posts and the `/news/` page that listed them) return **410 Gone** with the normal "Page not found" page, so Google drops them.
+- **Old pages that moved** 301 to their closest new page: `/advisory-brokerage/` and `/team_members/*` → `/about/`, `/tenants/*` → the tenants list on `/about/`, `/property-search/`, `/property/` and the type/city/state/street listing pages → `/properties/`. Street pages for a single building go straight to that building.
+- **Old flyer and photo links** (`/wp-content/uploads/...`) 301 to the same file under `/assets/media/`. When you upload a new flyer, keep the year/month folder structure and old links keep working.
 
-On Apache: `Redirect gone /hack-au-pokies-2024/` (one line per URL).
+Old property URLs (`/property/<slug>/`) are unchanged and need no redirect. To add a redirect, add a line `<old path>  <new path>  301` above the wildcard (`*`) rules in its section.
 
 ## How to add or replace photos and flyers
 
