@@ -1,0 +1,49 @@
+# Pantheon Properties — redirects from the old WordPress site
+#
+# Format: <old path>  <new path>  <status>
+# Rules are checked top to bottom; the first match wins, so keep specific
+# rules above wildcard (*) rules. Trailing slashes don't matter.
+# Pages that exist on the new site (e.g. /property/401-penhorn-avenue/)
+# are never affected by these rules.
+
+# --- 1. Hacked spam pages: 410 Gone -------------------------------------
+# Tells Google these pages were removed on purpose so it drops them from
+# search results. Visitors see the normal "Page not found" page.
+# /news/ only ever listed these spam posts, so it is removed too.
+/australian-pokies-at-casino-2024/*          /404.html  410
+/hack-au-pokies-2024/*                       /404.html  410
+/win-cash-safe-pokies/*                      /404.html  410
+/free-winning-pokies-machines/*              /404.html  410
+/tax-free-pokies-with-bonus-that-pay-cash/*  /404.html  410
+/popular-pokies-tricks-to-win/*              /404.html  410
+/batman-hill-pokies/*                        /404.html  410
+/real-money-pokies-2024/*                    /404.html  410
+/aus-money-accepted-aristocrat-pokies/*      /404.html  410
+/slot-machines-in-anaheim-au/*               /404.html  410
+/news/*                                      /404.html  410
+
+# --- 2. Old pages that moved: 301 permanent redirects --------------------
+/advisory-brokerage/*     /about/                301
+/property-search/*        /properties/           301
+/property                 /properties/           301
+/team_members/*           /about/                301
+/tenants/*                /about/#tenants        301
+
+# Street pages for a single building go to that building's page
+/property-area/jefferson-avenue/*    /property/505-jefferson-avenue/   301
+/property-area/liberty-avenue/*      /property/3200-liberty-avenue/    301
+/property-area/oak-point-avenue/*    /property/100-oak-point-avenue/   301
+/property-area/triangle-boulevard/*  /property/70-triangle-boulevard/  301
+/property-area/washington-avenue/*   /property/217-washington-avenue/  301
+/property-area/wilson-avenue/*       /property/280-wilson-avenue/      301
+
+# All other listing/filter pages (types, streets, cities, states)
+/property-type/*          /properties/           301
+/property-area/*          /properties/           301
+/property-city/*          /properties/           301
+/property-state/*         /properties/           301
+
+# --- 3. Old flyer and photo links ---------------------------------------
+# Uploads were copied into /assets/media/ keeping the same year/month
+# folders and file names, so links shared in emails keep working.
+/wp-content/uploads/*     /assets/media/:splat   301
