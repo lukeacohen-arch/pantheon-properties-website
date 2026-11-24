@@ -288,6 +288,16 @@ ${footer()}
 
 const specRows = (p) => [["Square footage", p.sf], ["Land area", p.land], ["Ceiling height", p.ceiling], ["Parking", p.parking], ["Loading", p.loading]].filter(([, v]) => v);
 
+// Banner label for an available unit, e.g. "Unit 6", "Units D, E & F", "Smith Point land".
+const unitName = (p, u) => p.slug === "100-oak-point-avenue" ? `${u.label} land` : `Unit${/[,&]/.test(u.label) ? "s" : ""} ${u.label}`;
+
+// Banner under the card photo listing what is available at the property (omitted when fully leased).
+const availBanner = (p) => p.avail.length ? `
+  <div class="prop-avail">
+    <p class="prop-avail-label">Available now</p>
+    <ul class="prop-avail-list">${p.avail.map((u) => `<li><span class="prop-avail-unit">${esc(unitName(p, u))}</span><span class="prop-avail-size">${esc(u.sizeText)}</span></li>`).join("")}</ul>
+  </div>` : "";
+
 function propCard(p, headingLevel = 3) {
   const h = `h${headingLevel}`;
   const specs = specRows(p).filter(([k]) => k !== "Loading").slice(0, 4);
@@ -295,7 +305,7 @@ function propCard(p, headingLevel = 3) {
   <div class="prop-media">
     <img src="${p.img}" alt="${esc(p.name)} industrial property in ${esc(p.city)}, ${p.stateName}" width="768" height="512" loading="lazy" decoding="async">
     <span class="badge ${p.status === "available" ? "badge--ok" : "badge--off"}">${p.status === "available" ? "Available" : "Fully leased"}</span>
-  </div>
+  </div>${availBanner(p)}
   <div class="prop-body">
     <p class="prop-market">${esc(p.stateName)} · ${esc(p.city)}</p>
     <${h}><a href="${p.url}">${esc(p.name)}</a></${h}>
