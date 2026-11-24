@@ -1,0 +1,53 @@
+# Pantheon Properties: redirects from the old WordPress site to the new site.
+# Netlify reads this file automatically. Format: old-address  new-address  status
+# 301 = permanent move (tells Google to transfer the old page's ranking).
+
+# --- Old WordPress page addresses ---------------------------------------
+/home                     /                          301
+/index.php                /                          301
+/index.html               /                          301
+/property                 /properties/               301
+/property/                /properties/               301
+/available-properties     /properties/               301
+/available-properties/    /properties/               301
+/listings                 /properties/               301
+/listings/                /properties/               301
+/about-us                 /about/                    301
+/about-us/                /about/                    301
+/contact-us               /contact/                  301
+/contact-us/              /contact/                  301
+/management               /property-management/      301
+/management/              /property-management/      301
+/services                 /property-management/      301
+/services/                /property-management/      301
+/asset-management         /property-management/      301
+/asset-management/        /property-management/      301
+
+# --- WordPress feeds and sitemaps ---------------------------------------
+/feed                     /                          301
+/feed/                    /                          301
+/comments/feed/           /                          301
+/sitemap_index.xml        /sitemap.xml               301
+/wp-sitemap.xml           /sitemap.xml               301
+/page-sitemap.xml         /sitemap.xml               301
+/property-sitemap.xml     /sitemap.xml               301
+
+# --- Old WordPress "?p=123" and "?page_id=123" short links --------------
+/    p=:id                /properties/               301
+/    page_id=:id          /                          301
+
+# --- Flyers (PDFs people may have bookmarked or emailed) ------------------
+/wp-content/uploads/2025/12/401-Penhorn-Unit-6-Marketing-Flyer_LC_12.26.2025.pdf               /assets/flyers/401-penhorn-unit-6-marketing-flyer.pdf                  301
+/wp-content/uploads/2020/12/unit53d90b7acabf3file.pdf                                          /assets/flyers/70-triangle-boulevard-marketing-flyer.pdf               301
+/wp-content/uploads/2024/11/217-Washington-Ave_Marketing-Flyer_2024.11.04_Unit-DEF.pdf        /assets/flyers/217-washington-avenue-units-def-marketing-flyer.pdf     301
+
+# --- Property photos (including WordPress' resized copies, e.g. -1170x694) ---
+/wp-content/uploads/2020/11/prop44bd683f506fd-2-*    /assets/img/media/401-penhorn-avenue-hero.webp      301
+/wp-content/uploads/2020/11/prop44bd683f506fd-2.jpg  /assets/img/media/401-penhorn-avenue-hero.webp      301
+/wp-content/uploads/2020/12/prop4a2919228f306*       /assets/img/media/70-triangle-boulevard-hero.webp   301
+/wp-content/uploads/2021/05/217-photo*               /assets/img/media/217-washington-avenue-hero.webp   301
+/wp-content/uploads/2023/07/3200-Building-aerial*    /assets/img/media/3200-liberty-avenue-hero.webp     301
+/wp-content/uploads/2020/11/prop42f3c33f62f78*       /assets/img/media/280-wilson-avenue-hero.webp       301
+/wp-content/uploads/2020/12/prop42892ad6ef434*       /assets/img/media/201-penhorn-avenue-hero.webp      301
+/wp-content/uploads/2020/12/prop47fd18bfef521*       /assets/img/media/100-oak-point-avenue-hero.webp    301
+/wp-content/uploads/2020/12/prop4e67a65e571df*       /assets/img/media/505-jefferson-avenue-hero.webp    301
