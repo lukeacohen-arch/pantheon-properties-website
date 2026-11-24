@@ -385,6 +385,21 @@ a:hover { color: var(--navy-700); }
 .prop-media { position: relative; aspect-ratio: 3 / 2; background: var(--steel-100); overflow: hidden; }
 .prop-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .prop-card:hover .prop-media img { transform: scale(1.04); }
+/* Availability banner under the card photo (home page) */
+.prop-avail {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.9rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--navy-900); color: var(--white);
+  border-bottom: 3px solid var(--brass-500);
+}
+.prop-avail-label {
+  margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--brass-400);
+}
+.prop-avail-list { display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem; margin: 0; padding: 0; list-style: none; }
+.prop-avail-list li { display: inline-flex; align-items: baseline; gap: 0.4rem; }
+.prop-avail-unit { font-weight: 700; }
+.prop-avail-size { color: #c9d4e2; font-size: 0.9375rem; }
 .prop-body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
 .prop-market { font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-700); margin: 0 0 0.35rem; }
 .prop-card h3 { margin-bottom: 0.9rem; font-size: 1.4rem; }
