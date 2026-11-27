@@ -247,6 +247,13 @@ function page({ path, section, title, description, ogImage = DEFAULT_OG, extra =
   return `<!doctype html>
 <html lang="en-US">
 <head>
+<!-- Google tag (Google Tag Manager container GTM-TRZFN394) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TRZFN394"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
@@ -724,7 +731,6 @@ add("/contact/", page({
       <h2>Send us a message</h2>
       <form class="form" name="contact" data-contact-form method="post" action="/contact/thank-you/" data-netlify="true" netlify-honeypot="company_website" novalidate>
         <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="subject" value="New website inquiry (%{submissionId})">
         <div class="form-row form-row--2">
           <div class="field"><label for="name">Name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="email">Email <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
